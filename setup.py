@@ -3,7 +3,7 @@ import os
 from setuptools import find_packages, setup
 
 setup(name='tap-criteo',
-      version='0.2.0',
+      version='0.2.1',
       description='Singer.io tap for extracting data/metadata from the Criteo Marketing API',
       author='judah.rand@fospah.com',
       url='http://singer.io',
