@@ -1,0 +1,3 @@
+[{"metadata": {"inclusion": "available", "table-key-properties": ["id"]}, "breadcrumb": []},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "id"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "seller_name"]}]

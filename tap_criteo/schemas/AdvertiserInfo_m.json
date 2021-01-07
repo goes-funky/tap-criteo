@@ -1,0 +1,4 @@
+[{"metadata": {"inclusion": "available", "table-key-properties": ["id"]}, "breadcrumb": []},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "id"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "advertiserName"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "currencyName"]}]

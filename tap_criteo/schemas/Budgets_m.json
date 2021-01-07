@@ -1,0 +1,9 @@
+[{"metadata": {"inclusion": "available", "table-key-properties": ["budgetId"], "valid-replication-keys": "remainingBudgetUpdated"}, "breadcrumb": []},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "advertiserId"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "budgetId"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "budgetName"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "type"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "totalAmount"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "remainingBudget"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "remainingBudgetUpdated"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "active"]}]

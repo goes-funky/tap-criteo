@@ -1,0 +1,11 @@
+[{"metadata": {"inclusion": "available", "table-key-properties": ["id"], "valid-replication-keys": "updated"}, "breadcrumb": []},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "campaignId"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "id"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "advertiserId"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "name"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "description"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "created"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "updated"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "nbLines"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "nbLinesEmail"]},
+{"metadata": {"inclusion": "automatic"}, "breadcrumb": ["properties", "nbMatchesEmail"]}]
