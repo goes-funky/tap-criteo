@@ -28,6 +28,7 @@ setup(name='tap-criteo',
       packages=find_packages(),
       package_data={
           'tap_criteo': [
-              'schemas/*.json'
+              'schemas/*.json',
+              'metadata/*.json'
           ]
       })
