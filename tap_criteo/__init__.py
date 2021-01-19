@@ -24,7 +24,7 @@ def main():
         print(json.dumps(catalog, indent=2))
     # Otherwise run in sync mode
     elif args.catalog:
-        do_sync(args.config, args.state, catalog)
+        do_sync(args.config, args.state, args.catalog)
 
 
 if __name__ == "__main__":

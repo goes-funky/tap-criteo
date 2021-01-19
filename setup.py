@@ -13,7 +13,8 @@ setup(name='tap-criteo',
       python_requires='>=3.6',
       install_requires=[
           'singer-python==5.9.0',
-          'criteo-marketing==1.0.159'
+          'criteo-marketing==1.0.159',
+          'requests'
       ],
       extras_require={
           'dev': [

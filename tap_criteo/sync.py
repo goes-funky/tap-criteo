@@ -290,6 +290,7 @@ def sync_statistics_for_day(
 
     # Fetch the report as a csv string
     with metrics.http_request_timer(stream.tap_stream_id):
+        # TODO implement custom solution
         result = get_statistics_report(sdk_client, stats_query, token=token)
 
     csv_reader = parse_csv_string(mdata, result)
@@ -439,7 +440,7 @@ def sync_generic_endpoint(config, state, stream, sdk_client, token):
                 token=token,
             )
 
-    result = convert_keys_snake_to_camel([_.to_dict() for _ in result])
+    result = ([i for i in result])
 
     with metrics.record_counter(stream.tap_stream_id) as counter:
         time_extracted = utils.now()
@@ -447,8 +448,8 @@ def sync_generic_endpoint(config, state, stream, sdk_client, token):
         with Transformer() as bumble_bee:
             for row in result:
                 row["_sdc_report_datetime"] = REPORT_RUN_DATETIME
-                row = bumble_bee.transform(row, stream.schema.to_dict())
 
+                row = bumble_bee.transform(row, stream.schema.to_dict())
                 singer.write_record(
                     stream.stream, row, time_extracted=time_extracted
                 )

@@ -4,7 +4,12 @@ import time
 import criteo_marketing
 from criteo_marketing.rest import ApiException
 import singer
-
+from tap_criteo.marketing_client import (
+    get_oauth_token,
+    mc_get_audiences,
+    mc_sync,
+    mc_sync_statistics
+)
 
 LOGGER = singer.get_logger()
 
@@ -46,17 +51,18 @@ def create_sdk_client(config):
 def get_auth_token(client):
     """Authenticate with Criteo Marketing API and return acccess token."""
     LOGGER.info("Getting OAuth token")
-    auth_api = criteo_marketing.AuthenticationApi()
+
     with singer.metrics.http_request_timer("Authentication"):
-        auth_response = auth_api.o_auth2_token_post(
+        auth_response = get_oauth_token(
             client_id=client.configuration.username,
             client_secret=client.configuration.password,
-            grant_type=GRANT_TYPE,
         )
     global TOKEN_EXPIRE
-    TOKEN_EXPIRE = get_unixtime() + auth_response.expires_in
+
+    TOKEN_EXPIRE = get_unixtime() + auth_response['expires_in']
     # Token type is always "BEARER"
-    return auth_response.token_type + " " + auth_response.access_token
+
+    return auth_response['token_type'] + " " + auth_response['access_token']
 
 
 def refresh_auth_token(client, token):
@@ -82,6 +88,10 @@ def exception_is_4xx(exception):
 @singer.utils.backoff((ApiException,), exception_is_4xx)
 def get_statistics_report(client, stats_query, token=None):
     """Get Statistics Report from Criteo Marketing API endpoint."""
+
+    token = token or get_auth_token(client)
+    result = mc_sync_statistics(token, stats_query)
+    return result
     token = token or get_auth_token(client)
     defaults = {"format": FORMAT, "timezone": TIMEZONE}
     stats_query.update(defaults)
@@ -95,8 +105,7 @@ def get_statistics_report(client, stats_query, token=None):
 def get_audiences_endpoint(client, advertiser_id, token=None):
     """Get Audiences for an Advertiser from Criteo Marketing API."""
     token = token or get_auth_token(client)
-    api_instance = criteo_marketing.AudiencesApi(client)
-    return api_instance.get_audiences(token, advertiser_id=advertiser_id)
+    return mc_get_audiences(token, advertiser_id)
 
 
 @singer.utils.backoff((ApiException,), exception_is_4xx)
@@ -104,6 +113,8 @@ def get_generic_endpoint(
     client, module, method, advertiser_ids=None, token=None
 ):
     """Get objects from Criteo Marketing API for a selection of Avertisers."""
+    return mc_sync(module + '.' + method, token, advertiser_ids)
+
     token = token or get_auth_token(client)
     api_instance = getattr(criteo_marketing, module)(client)
     if advertiser_ids:
