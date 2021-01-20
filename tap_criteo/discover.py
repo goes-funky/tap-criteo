@@ -25,7 +25,7 @@ def load_schema(entity):
 
 def load_metadata(entity):
     """Load Singer Metadata from JSON file in schemas directory."""
-    return utils.load_json(get_abs_path("schemas/{}_m.json".format(entity)))
+    return utils.load_json(get_abs_path("metadata/{}.json".format(entity)))
 
 
 def do_discover():

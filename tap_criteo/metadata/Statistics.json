@@ -1,6 +1,6 @@
 [{"metadata": {"inclusion": "available", "tap-criteo.currency": "USD", "tap-criteo.ignoreXDevice": false}, "breadcrumb": []},
-{"metadata": {"inclusion": "avaliable", "tap-criteo.col-name": "Advertiser ID", "tap-criteo.behaviour": "dimension"}, "breadcrumb": ["properties", "AdvertiserId"]},
-{"metadata": {"inclusion": "avaliable", "tap-criteo.col-name": "Campaign ID", "tap-criteo.behaviour": "dimension"}, "breadcrumb": ["properties", "CampaignId"]},
+{"metadata": {"inclusion": "available", "tap-criteo.col-name": "Advertiser ID", "tap-criteo.behaviour": "dimension"}, "breadcrumb": ["properties", "AdvertiserId"]},
+{"metadata": {"inclusion": "available", "tap-criteo.col-name": "Campaign ID", "tap-criteo.behaviour": "dimension"}, "breadcrumb": ["properties", "CampaignId"]},
 {"metadata": {"inclusion": "available", "tap-criteo.col-name": "Category ID", "tap-criteo.behaviour": "dimension"}, "breadcrumb": ["properties", "Category"]},
 {"metadata": {"inclusion": "available", "tap-criteo.col-name": "Year", "tap-criteo.behaviour": "dimension"}, "breadcrumb": ["properties", "Year"]},
 {"metadata": {"inclusion": "available", "tap-criteo.col-name": "Month", "tap-criteo.behaviour": "dimension"}, "breadcrumb": ["properties", "Month"]},
