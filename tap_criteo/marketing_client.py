@@ -14,14 +14,12 @@ def get_oauth_token(client_secret="", client_id=""):
         "grant_type": "client_credentials"
     }
     r = requests.post('https://api.criteo.com/oauth2/token', postData)
-
     return json.loads(r.text)
 
 def mc_fetch(token, path, queryParams = None):
     headers = {
         'Authorization': token
     }
-
     path = 'https://api.criteo.com/' + path
 
     r = requests.get(path, queryParams, headers=headers)
@@ -57,6 +55,8 @@ def mc_sync_statistics(token, stats_query):
         'statsQuery': json.dumps(stats_query),
         'startDate': stats_query['start_date'],
         'endDate': stats_query['end_date'],
+        'dimensions': stats_query['dimensions'],
+        'metrics': stats_query['metrics']
     }
     r = requests.post(path, finalQuery, headers=headers)
 

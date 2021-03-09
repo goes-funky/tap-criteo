@@ -46,7 +46,8 @@ def get_start_for_stream(config, state, advertiser_ids, stream_name):
     bk_value = bookmarks.get_bookmark(
         state, state_key_name(advertiser_ids, stream_name), "date"
     )
-    bk_start_date = utils.strptime_with_tz(bk_value or config["start_date"])
+
+    bk_start_date = utils.strptime_with_tz(config["start_date"])
     return bk_start_date
 
 
@@ -158,7 +159,9 @@ def parse_csv_string(mdata, csv_string):
     headers = csv.reader(io.StringIO(csv_string), delimiter=CSV_DELIMITER)
     # Convert headers to match Schema from metadata
     header_mapping = {v.get("tap-criteo.col-name"): k for k, v in mdata.items()}
-    header_array = list(headers)[0]
+
+    headers_list = list(headers)
+    header_array = headers_list[0]
     header_array = [header_mapping[header][1] for header in header_array]
 
     # Create another CSV reader for the rest of the data
@@ -299,10 +302,11 @@ def sync_statistics_for_day(
 
         with Transformer() as bumble_bee:
             for row in csv_reader:
+
                 row["_sdc_report_datetime"] = REPORT_RUN_DATETIME
-                row["_sdc_report_currency"] = metadata.get(
-                    mdata, (), "currency"
-                )
+               # row["_sdc_report_currency"] = metadata.get(
+               #     mdata, (), "currency"
+               # )
                 row = bumble_bee.transform(row, stream.schema.to_dict())
 
                 singer.write_record(
