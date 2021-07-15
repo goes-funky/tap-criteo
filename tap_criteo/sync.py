@@ -214,10 +214,9 @@ def sync_statistics_report(config, state, stream, sdk_client, token):
     ]
     LOGGER.info("Selected dimensions: %s", report_dimensions)
     if not 0 <= len(report_dimensions) <= 3:
-        raise ValueError(
-            "%s stream only supports up to 3 selected dimensions"
-            % stream.stream
-        )
+        LOGGER.warning("%s stream only supports up to 3 selected dimensions"
+                       % stream.stream)
+        exit(42)
     report_metrics = [
         field
         for field in field_list
@@ -225,9 +224,8 @@ def sync_statistics_report(config, state, stream, sdk_client, token):
     ]
     LOGGER.info("Selected metrics: %s", report_metrics)
     if not len(report_metrics) >= 1:
-        raise ValueError(
-            "%s stream must have at least 1 selected metric" % stream.stream
-        )
+        LOGGER.warning("%s stream must have at least 1 selected metric" % stream.stream)
+        exit(42)
 
     while start_date <= get_end_date(config):
         token = refresh_auth_token(sdk_client, token)
